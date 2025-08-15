@@ -67,9 +67,9 @@ Paste into the **Import** page to quickly add recipes:
 - 1 tsp Sichuan peppercorns, ground
 
 **Instructions:**
-1. Bloom paste and aromatics.
-2. Simmer tofu in sauce.
-3. Finish with scallions and peppercorn.
+- Bloom paste and aromatics.
+- Simmer tofu in sauce.
+- Finish with scallions and peppercorn.
 ```
 ---
 
