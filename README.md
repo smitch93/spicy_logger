@@ -50,6 +50,9 @@ It’s compact, but touches all the bases of full-stack development.
 
 ## 📥 Import Format Example
 
+## You can paste multiple sections at once.
+## The importer will skip duplicates based on title + cuisine.
+
 Paste into the **Import** page to quickly add recipes:
 
 ```markdown
@@ -67,3 +70,4 @@ Paste into the **Import** page to quickly add recipes:
 3. Finish with scallions and peppercorn.
 
 ---
+
