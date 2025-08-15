@@ -2,8 +2,6 @@
 
 **Live Demo**:(https://spicy-logger.onrender.com)
 
-![CI](https://img.shields.io/github/actions/workflow/status/smitch93/spicy_logger/ci.yml?branch=main)
-![License](https://img.shields.io/badge/license-MIT-informational)
 
 A single-file Flask web app to **capture, browse, and filter spicy recipes** — with a modern UI, carousel view, and Markdown importing.
 
