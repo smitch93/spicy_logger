@@ -73,9 +73,9 @@ def parse_markdown_collection(md_text: str) -> List[Dict]:
     Assumes sections separated by headers like '### n. Title' and '---'.
     """
     recipes = []
-    # Find all headers with positions
+
+    # Find all section headers and slice the doc into chunks
     headers = [(m.group(1).strip(), m.start()) for m in SECTION_RE.finditer(md_text)]
-    # Append end position
     doc_end = len(md_text)
     spans = []
     for i, (title, start) in enumerate(headers):
@@ -84,15 +84,16 @@ def parse_markdown_collection(md_text: str) -> List[Dict]:
 
     for title, start, end in spans:
         chunk = md_text[start:end]
+
         # Mood
         mood_match = FIELD_RE.search(chunk)
         mood = mood_match.group(1).strip() if mood_match else None
+
         # Ingredients
-        ingredients = []
+        ingredients: List[str] = []
         ing_header = ING_HEADER_RE.search(chunk)
         if ing_header:
             ing_start = ing_header.end()
-            # Stop at Instructions header or separator or end
             stop_candidates = [
                 m.start()
                 for m in [
@@ -107,8 +108,9 @@ def parse_markdown_collection(md_text: str) -> List[Dict]:
                 line = line.strip(" \t-•")
                 if line:
                     ingredients.append(line)
-        # Instructions
-        instructions = []
+
+        # Instructions (store plain steps; let <ol> number them)
+        instructions: List[str] = []
         ins_header = INS_HEADER_RE.search(chunk)
         if ins_header:
             ins_start = ins_header.end()
@@ -122,19 +124,22 @@ def parse_markdown_collection(md_text: str) -> List[Dict]:
             ]
             ins_end = min(stop_candidates) if stop_candidates else len(chunk)
             ins_block = chunk[ins_start:ins_end].strip()
+
             for line in ins_block.splitlines():
                 line = line.strip()
-            if not line:
-                continue
-    # Strip any numbering/bullets from imported text; store plain step
-    line = re.sub(r'^\s*(?:\d+[.)]\s*|[-•]\s*)', '', line)
-    instructions.append(line)
-        # Guess cuisine from title parenthesis e.g., (Chinese-Sichuan Style)
+                if not line:
+                    continue
+                # Strip leading "1. ", "2) ", "- ", "• ", etc.
+                line = re.sub(r'^\s*(?:\d+[.)]\s*|[-•]\s*)', '', line)
+                instructions.append(line)
+
+        # Guess cuisine from title parentheses e.g., "(Ethiopian)"
         cuisine = None
         m = re.search(r"\(([^)]+)\)", title)
         if m:
             cuisine = m.group(1)
             title = re.sub(r"\s*\([^)]*\)\s*$", "", title).strip()
+
         recipes.append(
             {
                 "title": title,
@@ -148,6 +153,7 @@ def parse_markdown_collection(md_text: str) -> List[Dict]:
                 "source": "Imported from Markdown",
             }
         )
+
     return recipes
 
 
