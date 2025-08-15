@@ -71,3 +71,65 @@ Paste into the **Import** page to quickly add recipes:
 
 ---
 
+## 💻 Run Locally
+
+    # Clone the repo
+    git clone https://github.com/smitch93/spicy_logger.git
+    cd spicy_logger
+
+    # Create & activate a virtual environment (PowerShell)
+    python -m venv venv
+    .\venv\Scripts\Activate.ps1
+
+    # Install dependencies
+    pip install -r requirements.txt
+
+    # Run the app (dev mode)
+    $env:FLASK_DEBUG="1"
+    python Spicy_Recipe_Logger_App.py
+    # Open http://127.0.0.1:5000
+
+---
+
+## 📡 API Endpoints
+
+**List recipes (JSON)**
+
+    GET /api/recipes?q=&cuisine=&veg=&tried=
+
+Returns a JSON array (max 200). Example:
+
+    [
+      {
+        "id": 1,
+        "title": "Mapo Tofu",
+        "cuisine": "Chinese-Sichuan Style",
+        "vegetarian": 0,
+        "tried": 0,
+        "created_at": "2025-08-14T18:32:15"
+      }
+    ]
+
+**Health check**
+
+    GET /healthz
+
+Returns:
+
+    { "ok": true }
+
+---
+
+## 🖼 Screenshots
+
+*(Add real screenshots to `/screenshots` and update names as needed.)*
+
+- List view: `screenshots/list-view.png`  
+- Carousel view: `screenshots/carousel-view.png`  
+- Edit form: `screenshots/edit-form.png`
+
+Embed like:
+
+    ![List view](screenshots/list-view.png)
+    ![Carousel view](screenshots/carousel-view.png)
+    ![Edit form](screenshots/edit-form.png)
