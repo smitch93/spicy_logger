@@ -868,5 +868,28 @@ def api_recipes():
     return jsonify(rows)
 
 
+def clean_existing_instructions():
+    """One-time DB maintenance: strip leading numbering/bullets from all instructions."""
+    with get_db() as db:
+        rows = db.execute(
+            "SELECT id, instructions FROM recipes WHERE instructions IS NOT NULL"
+        ).fetchall()
+        changed = 0
+        for row in rows:
+            original = row["instructions"] or ""
+            lines = original.splitlines()
+            cleaned_lines = []
+            for line in lines:
+                line = re.sub(r'^\s*(?:\d+[.)]\s*|[-•]\s*)', '', line).strip()
+                if line:
+                    cleaned_lines.append(line)
+            cleaned = "\n".join(cleaned_lines)
+            if cleaned != original:
+                db.execute("UPDATE recipes SET instructions = ? WHERE id = ?", (cleaned, row["id"]))
+                changed += 1
+        db.commit()
+    print(f"Cleaned {changed} recipe(s).")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
