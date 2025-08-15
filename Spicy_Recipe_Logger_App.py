@@ -522,8 +522,13 @@ def view_recipe(recipe_id: int):
         return redirect(url_for('index'))
 
     ing_html = "".join(f"<li>{html.escape(line)}</li>" for line in (r["ingredients"] or "").splitlines())
-    ins_html = "".join(f"<li>{html.escape(line)}</li>" for line in (r["instructions"] or "").splitlines())
-
+    raw_steps = (r["instructions"] or "").splitlines()
+    clean_li = []
+    for raw in raw_steps:
+        cleaned = re.sub(r'^\s*(?:\d+[.)]\s*|[-•]\s*)', '', raw).strip()
+        if cleaned:
+            clean_li.append(f"<li>{html.escape(cleaned)}</li>")
+    ins_html = "".join(clean_li)
     # badges
     badges = []
     if r["vegetarian"]:
