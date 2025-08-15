@@ -125,7 +125,7 @@ def parse_markdown_collection(md_text: str) -> List[Dict]:
             for line in ins_block.splitlines():
                 line = line.strip()
             if not line:
-            continue
+                continue
     # Strip any numbering/bullets from imported text; store plain step
     line = re.sub(r'^\s*(?:\d+[.)]\s*|[-•]\s*)', '', line)
     instructions.append(line)
