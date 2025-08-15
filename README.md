@@ -68,7 +68,7 @@ Paste into the **Import** page to quickly add recipes:
 1. Bloom paste and aromatics.
 2. Simmer tofu in sauce.
 3. Finish with scallions and peppercorn.
-
+```
 ---
 
 ## 💻 Run Locally
