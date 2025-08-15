@@ -123,9 +123,9 @@ def parse_markdown_collection(md_text: str) -> List[Dict]:
             ins_end = min(stop_candidates) if stop_candidates else len(chunk)
             ins_block = chunk[ins_start:ins_end].strip()
             for line in ins_block.splitlines():
-    line = line.strip()
-    if not line:
-        continue
+                line = line.strip()
+            if not line:
+            continue
     # Strip any numbering/bullets from imported text; store plain step
     line = re.sub(r'^\s*(?:\d+[.)]\s*|[-•]\s*)', '', line)
     instructions.append(line)
