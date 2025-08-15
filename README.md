@@ -9,6 +9,8 @@ A single-file Flask web app to **capture, browse, and filter spicy recipes** —
 
 ![List View](screenshots/list_view.png)  
 ![Carousel View](screenshots/carousel_view.png)  
+![Edit Form](screenshots/edit_form.png)
+![Dark Theme](screenshots/dark_mode.png)
 
 ---
 
