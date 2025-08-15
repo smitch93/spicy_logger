@@ -126,12 +126,14 @@ Returns:
 
 *(Add real screenshots to `/screenshots` and update names as needed.)*
 
-- List view: `screenshots/list-view.png`  
-- Carousel view: `screenshots/carousel-view.png`  
-- Edit form: `screenshots/edit-form.png`
+- List view: `Screenshots/list_view.png`  
+- Carousel view: `Screenshots/carousel_view.png`  
+- Edit form: `Screenshots/edit_form.png`
+- Dark theme: `Screenshots/dark_mode.png`
 
 Embed like:
 
-    ![List view](screenshots/list-view.png)
-    ![Carousel view](screenshots/carousel-view.png)
-    ![Edit form](screenshots/edit-form.png)
+    ![List view](Screenshots/list_view.png)
+    ![Carousel view](Screenshots/carousel_view.png)
+    ![Edit form](Screenshots/edit_form.png)
+    ![Dark Theme](Screenshots/dark_mode.png)
