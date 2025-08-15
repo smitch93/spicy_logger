@@ -1,2 +1,0 @@
-# Current Contents of requirements.txt
-# (Add the contents here)
